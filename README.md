@@ -1,7 +1,7 @@
 # About `mini_qa`
 
-`mini_qa` is a toy question-answering program.  It uses Google and
-Wolfram Alpha to attempt to answer questions of the form "Who... ?"
+`mini_qa` is a toy question-answering program originally written by [Michael Nielsen](http://michaelnielsen.org/).  It uses Google and
+Wolfram Alpha to attempt to answer questions of the form "Who... ?".
 
 An example question is: "Who discovered relativity?"
 
@@ -11,16 +11,18 @@ at Microsoft Research.  The original paper is:
 Brill, Lin, Banko, Dumais and Ng, "Data-Intensive Question
 Answering" (2001).
 
-I've described background to this program
+The original author of this program, Michael Nielsen, described background to this program
 [here](http://www.michaelnielsen.org/ddi/how-to-answer-a-question-a-simple-system/)
 and
 [here](http://www.michaelnielsen.org/ddi/using-evaluation-to-improve-our-question-answering-system/).
 
+The present fork of `mini_qa` was created by [Marco Kuhlmann](http://www.ida.liu.se/~marku61/) for use in a course at [Linköping University](http://www.liu.se/) called [Perspectives on information technology](https://www.ida.liu.se/~TDDD39/).
+
 # Installation and useage
 
-To be added.  Note that `mini_qa` was written with the `v0.01` version
-of `ec2_tools` in mind:
-[code available here](https://github.com/mnielsen/ec2_tools/tree/v0.01).
+Clone the repository, install the dependencies (most importantly, [BeautifulSoup](http://www.crummy.com/software/BeautifulSoup/)) and run the script:
+
+	% python mini_qa.py
 
 # Note on contributions and pull requests
 
@@ -41,7 +43,7 @@ looking for feedback on that code.
 
 MIT License
 
-Except the files `google.py` and `wolfram.py` all files in this
+Except the files `google.py` all files in this
 repository are copyright (c) 2012 Michael Nielsen
 
 Permission is hereby granted, free of charge, to any person
