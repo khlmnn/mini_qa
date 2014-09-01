@@ -43,14 +43,14 @@
 
 __all__ = ['search']
 
-import BeautifulSoup
-import cookielib
+import bs4
+import http.cookiejar
 import os
 import random
 import time
-import urllib
-import urllib2
-import urlparse
+import urllib.request, urllib.parse, urllib.error
+import urllib.request, urllib.error, urllib.parse
+import urllib.parse
 
 # URL templates to make Google searches.
 url_home          = "http://www.google.%(tld)s/"
@@ -65,7 +65,7 @@ if not home_folder:
     home_folder = os.getenv('USERHOME')
     if not home_folder:
         home_folder = '.'   # Use the current folder on error.
-cookie_jar = cookielib.LWPCookieJar(
+cookie_jar = http.cookiejar.LWPCookieJar(
                             os.path.join(home_folder, '.google-cookie'))
 try:
     cookie_jar.load()
@@ -88,11 +88,11 @@ def get_page(url):
     @raise urllib2.URLError: An exception is raised on error.
     @raise urllib2.HTTPError: An exception is raised on error.
     """
-    request = urllib2.Request(url)
+    request = urllib.request.Request(url)
     request.add_header('User-Agent',
                        'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0)')
     cookie_jar.add_cookie_header(request)
-    response = urllib2.urlopen(request)
+    response = urllib.request.urlopen(request)
     cookie_jar.extract_cookies(response, request)
     html = response.read()
     response.close()
@@ -106,17 +106,17 @@ def filter_result(link):
 
         # Valid results are absolute URLs not pointing to a Google domain
         # like images.google.com or googleusercontent.com
-        o = urlparse.urlparse(link, 'http')
+        o = urllib.parse.urlparse(link, 'http')
         if o.netloc and 'google' not in o.netloc:
             return link
 
         # Decode hidden URLs.
         if link.startswith('/url?'):
-            link = urlparse.parse_qs(o.query)['q'][0]
+            link = urllib.parse.parse_qs(o.query)['q'][0]
 
             # Valid results are absolute URLs not pointing to a Google domain
             # like images.google.com or googleusercontent.com
-            o = urlparse.urlparse(link, 'http')
+            o = urllib.parse.urlparse(link, 'http')
             if o.netloc and 'google' not in o.netloc:
                 return link
 
@@ -166,7 +166,7 @@ def search(query, tld='com', lang='en', num=10, start=0, stop=None, pause=10.0):
     hashes = set()
 
     # Prepare the search string.
-    query = urllib.quote_plus(query)
+    query = urllib.parse.quote_plus(query)
 
     # Grab the cookie from the home page.
     get_page(url_home % vars())
@@ -181,7 +181,7 @@ def search(query, tld='com', lang='en', num=10, start=0, stop=None, pause=10.0):
     html = get_page(url)
 
     # Parse the response and extract the summaries
-    soup = BeautifulSoup.BeautifulSoup(html)
+    soup = bs4.BeautifulSoup(html)
     return soup.findAll("div", {"class": "s"})
     
 # When run as a script, take all arguments as a search query and run it.

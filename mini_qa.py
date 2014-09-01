@@ -9,7 +9,7 @@ Toy question-answering program.
 
 # standard library
 from collections import defaultdict
-import cPickle as pickle
+import pickle as pickle
 import json
 import re
 import sys
@@ -40,9 +40,9 @@ def pretty_qa(question, num=10):
     parentheses).
 
     """
-    print "\nQ: "+question
+    print("\nQ: "+question)
     for (j, (answer, score)) in enumerate(qa(question)[:num]):
-        print "%s. %s (%s)" % (j+1, answer, score)
+        print("%s. %s (%s)" % (j+1, answer, score))
 
 def qa(question):
     """Return a list of tuples whose first entry is a candidate answer to
@@ -57,7 +57,7 @@ def qa(question):
                 for ngram in candidate_answers(sentence, query.query):
                     answer_scores[ngram] += ngram_score(
                         ngram, query.score)
-    ngrams_with_scores = sorted(answer_scores.iteritems(), 
+    ngrams_with_scores = sorted(iter(answer_scores.items()), 
                                 key=lambda x: x[1], 
                                 reverse=True)
     return [(" ".join(ngram), score) 
@@ -156,7 +156,7 @@ def ngrams(words, n=1):
     per the description in `candidate_answers`.
 
     """
-    return [tuple(words[j:j+n]) for j in xrange(len(words)-n+1)]
+    return [tuple(words[j:j+n]) for j in range(len(words)-n+1)]
 
 def ngram_score(ngram, score):
     """Return the score associated to `ngram`.  The base score is
