@@ -1,7 +1,6 @@
 # About `mini_qa`
 
-`mini_qa` is a toy question-answering program originally written by [Michael Nielsen](http://michaelnielsen.org/).  It uses Google and
-Wolfram Alpha to attempt to answer questions of the form "Who... ?".
+`mini_qa` is a toy question-answering program originally written by [Michael Nielsen](http://michaelnielsen.org/).  It uses Google to attempt to answer questions of the form "Who... ?".
 
 An example question is: "Who discovered relativity?"
 
@@ -20,24 +19,11 @@ The present fork of `mini_qa` was created by [Marco Kuhlmann](http://www.ida.liu
 
 # Installation and useage
 
-Clone the repository, install the dependencies (most importantly, [BeautifulSoup](http://www.crummy.com/software/BeautifulSoup/)) and run the script:
+Clone the repository and run the script:
 
 	% python mini_qa.py
 
-# Note on contributions and pull requests
-
-Bug fixes are welcome.
-
-This program is a toy, and I'm using it purely for illustrative
-purposes on my blog, so I don't plan to accept pull requests that add
-features.  But feel free to fork and add features --- the beauty of
-AskMSR is that it's an easy system to extend. 
-
-If you have comments or suggestions about the style of the main
-program (`mini_qa.py`), I'd like to hear them.  Leave them on the
-issue tracker, or email me (mn@michaelnielsen.org).  By contast,
-`test_mini_qa.py` is more of a quick-and-dirty kludge, so I'm not
-looking for feedback on that code.
+(This assumes that `python` points to Python 3.)
 
 # Copyright and licensing
 
