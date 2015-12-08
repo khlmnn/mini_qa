@@ -181,7 +181,7 @@ def search(query, tld='com', lang='en', num=10, start=0, stop=None, pause=10.0):
     html = get_page(url)
 
     # Parse the response and extract the summaries
-    soup = bs4.BeautifulSoup(html)
+    soup = bs4.BeautifulSoup(html, "html.parser")
     return soup.findAll("div", {"class": "s"})
     
 # When run as a script, take all arguments as a search query and run it.
